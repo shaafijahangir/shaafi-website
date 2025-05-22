@@ -77,9 +77,15 @@ const Hero = () => {
           <div className="lg:col-span-5">
             <div className="relative">
               <div className="aspect-square rounded-full bg-secondary/50 flex items-center justify-center mx-auto" style={{ maxWidth: '400px' }}>
-                <Avatar className="h-full w-full">
-                  <AvatarImage src="https://images.unsplash.com/photo-1501286353178-1ec881214838?auto=format&fit=crop&q=80" alt="M Shaafi Jahangir" />
-                  <AvatarFallback className="text-6xl font-bold text-primary/10">MSJ</AvatarFallback>
+                <Avatar className="w-80 h-80 rounded-full overflow-hidden">
+                  <AvatarImage
+                    src="/shaafi-face-pic.jpg"
+                    alt="M Shaafi Jahangir"
+                    className="w-full h-full object-cover object-center"
+                  />
+                  <AvatarFallback className="text-6xl font-bold text-primary/10">
+                    MSJ
+                  </AvatarFallback>
                 </Avatar>
               </div>
               <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-3 shadow-lg">
