@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const Hero = () => {
   return (
@@ -76,7 +77,10 @@ const Hero = () => {
           <div className="lg:col-span-5">
             <div className="relative">
               <div className="aspect-square rounded-full bg-secondary/50 flex items-center justify-center mx-auto" style={{ maxWidth: '400px' }}>
-                <div className="text-6xl font-bold text-primary/10">MSJ</div>
+                <Avatar className="h-full w-full">
+                  <AvatarImage src="https://images.unsplash.com/photo-1501286353178-1ec881214838?auto=format&fit=crop&q=80" alt="M Shaafi Jahangir" />
+                  <AvatarFallback className="text-6xl font-bold text-primary/10">MSJ</AvatarFallback>
+                </Avatar>
               </div>
               <div className="absolute -bottom-4 -right-4 bg-white rounded-full p-3 shadow-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
