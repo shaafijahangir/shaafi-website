@@ -117,3 +117,66 @@
 html {
   scroll-behavior: smooth;
 }
+
+@layer utilities {
+  /* Problem / Solution headings in MDX */
+  .prose h2 {
+    @apply mt-8 mb-4 text-2xl font-semibold text-[#1C1C1C];
+  }
+
+  .prose h3 {
+    @apply mt-6 mb-3 text-xl font-semibold;
+  }
+  
+  .container-main {
+    @apply max-w-4xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* soft card look (same as project cards) */
+  .card-surface {
+    @apply rounded-xl bg-white shadow-md;
+  }
+  .prose video {
+    @apply card-surface mt-6;
+  }
+
+  .badge-pill {
+    @apply inline-block rounded-full bg-secondary text-secondary-foreground text-[11px] font-medium px-3 py-1 uppercase tracking-wide;
+  }
+
+  /* soft “card” background like home cards */
+  .surface-card {
+    @apply bg-white rounded-xl shadow-md;
+  }
+
+    /* 2-col layout that collapses on small screens */
+  .project-grid {
+    @apply grid gap-10;
+    grid-template-columns: 1fr;
+  }
+  @screen md {
+    .project-grid {
+      grid-template-columns: minmax(0, 1fr) 280px; /* left fluid, right 280 px */
+    }
+  }
+
+  /* sticky details card on desktop */
+  .sticky-card {
+    @apply surface-card p-6;
+    @apply self-start; 
+  }
+  @screen md {
+    .sticky-card {
+      position: sticky;
+      top: 6rem;                 /* below navbar */
+    }
+  }
+  .content-wide {
+    @apply max-w-6xl mx-auto   /* ≈ 1152 px container */
+    px-4 sm:px-6 lg:px-8        /* side padding */
+    pt-10 lg:pt-14;             /* top padding */
+  }
+  .self-start {
+    align-self: start;
+  }
+}

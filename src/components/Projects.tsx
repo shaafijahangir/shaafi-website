@@ -1,5 +1,6 @@
 import React from "react"
 import { getProjects } from "@/lib/getProjects"
+import { Link } from "react-router-dom";
 
 const Projects = () => {
   const projects = getProjects()            // ← pulls the MDX data
@@ -37,17 +38,12 @@ const Projects = () => {
                   {project.excerpt}
                 </p>
 
-                {/* Prefer demo link; otherwise repo */}
-                {project.links?.demo || project.links?.repo ? (
-                  <a
-                    href={project.links.demo || project.links.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="button text-sm w-full text-center"
-                  >
-                    View Project
-                  </a>
-                ) : null}
+                <Link
+                  to={`/project/${project.slug}`}
+                  className="button text-sm w-full text-center"
+                >
+                  View Project
+                </Link>
               </div>
             </div>
           ))}
