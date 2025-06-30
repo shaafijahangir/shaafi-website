@@ -23,11 +23,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       // 👉 use your verified sender or the sandbox address:
       from: "onboarding@resend.dev",
       to: ["mshaafijahangir@gmail.com"],
-      subject: `📬 New message from ${name}`,
+      subject: `📬📬📬 New message from ${name}`,
       html: `
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p>${message.replace(/\n/g, "<br/>")}</p>
+        <p><strong>Message:</strong> ${message.replace(/\n/g, "<br/>")}</p>
       `,
       replyTo: email,
     });
