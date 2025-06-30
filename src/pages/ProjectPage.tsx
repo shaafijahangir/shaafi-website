@@ -62,9 +62,9 @@ export default function ProjectPage() {
           {frontmatter.problem && (
             <Callout title="The Problem" color="gold">
               <MarkdownBlock markdown={frontmatter.problem} />
-              {frontmatter.cover && (
+              {frontmatter.pic1 && (
                 <motion.img
-                  src={frontmatter.cover}
+                  src={frontmatter.pic1}
                   alt={frontmatter.title}
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 250, damping: 20 }}
@@ -76,9 +76,9 @@ export default function ProjectPage() {
           {frontmatter.solution && (
             <Callout title="Our Solution" color="teal">
               <MarkdownBlock markdown={frontmatter.solution} />
-              {frontmatter.cover && (
+              {frontmatter.pic1 && (
                 <motion.img
-                  src={frontmatter.cover}
+                  src={frontmatter.pic1}
                   alt={frontmatter.title}
                   whileHover={{ y: -4, scale: 1.01 }}
                   transition={{ type: "spring", stiffness: 250, damping: 20 }}

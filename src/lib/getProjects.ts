@@ -10,7 +10,7 @@ export interface ProjectMeta {
   status: string
   stack: string[]
   links: Links
-  cover: string
+  pic1: string
   excerpt: string
   repo?: string
   problem?: string

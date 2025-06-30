@@ -18,7 +18,7 @@ const Projects = () => {
             >
               {/* cover image */}
               <img
-                src={project.cover}
+                src={project.pic1}
                 alt={project.title}
                 className="rounded-md aspect-video object-cover mb-4"
               />

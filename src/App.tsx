@@ -6,6 +6,8 @@ import { Routes, Route } from "react-router-dom";        // ⬅ BrowserRouter re
 import Index from "./pages/Index";
 import ProjectPage from "./pages/ProjectPage";           // ⬅ new import
 import NotFound from "./pages/NotFound";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const queryClient = new QueryClient();
 
@@ -15,16 +17,19 @@ const App = () => (
       <Toaster />
       <Sonner />
 
-      {/* BrowserRouter is already wrapped in main.tsx */}
-      <Routes>
-        <Route path="/" element={<Index />} />
+      <Navbar />
 
-        {/* project detail page */}
-        <Route path="/project/:slug" element={<ProjectPage />} />
+      {/* push everything down so it isn't hidden under the fixed bar */}
+      <div className="pt-20">
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/project/:slug" element={<ProjectPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
 
-        {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      <Footer />
+
     </TooltipProvider>
   </QueryClientProvider>
 );

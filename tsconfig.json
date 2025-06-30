@@ -9,6 +9,9 @@
     "paths": {
       "@/*": ["./src/*"]
     },
+
+    "types": ["vite/client", "node"],
+
     "noImplicitAny": false,
     "noUnusedParameters": false,
     "skipLibCheck": true,

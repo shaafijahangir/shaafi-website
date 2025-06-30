@@ -28,12 +28,12 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { name: 'About', href: '#about' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Education', href: '#education' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '/#about' },
+    { name: 'Experience', href: '/#experience' },
+    { name: 'Projects', href: '/#projects' },
+    { name: 'Education', href: '/#education' },
+    { name: 'Skills', href: '/#skills' },
+    { name: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -46,8 +46,12 @@ const Navbar = () => {
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="#" className="text-xl font-bold">
-          MSJ
+        <a href="/" className="block">
+          <img
+            src="/logo.png"
+            alt="M Shaafi Jahangir logo"
+            className="h-8 w-auto sm:h-5"
+          />
         </a>
 
         {/* Desktop Navigation */}
