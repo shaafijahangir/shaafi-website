@@ -15,7 +15,9 @@ export interface ProjectMeta {
   repo?: string
   problem?: string
   solution?: string
+  tags?: string[] // ← Add this line
 }
+
 
 /** Full record returned for a single project page */
 export interface ProjectData {

@@ -1,0 +1,24 @@
+---
+title: "AI-Integrated Job Aggregator"
+slug: job-aggregator
+date: "2025-01-15"
+category: ["Career Tech", "AI Automation"]
+status: in-progress
+stack: ["TypeScript", "Playwright", "LangChain", "Next.js", "Tailwind"]
+pic1: "/images/job-aggregator/dashboard.png" # dashboard screenshot
+pic2: "/images/job-aggregator/resume-gen.png" # AI resume generator
+excerpt: "Scrapes multiple job boards, de-duplicates listings, and auto-generates tailored résumés & cover letters."
+repo: "https://github.com/shaafijahangir/job-aggregator"
+tags: ["featured", "personal"]
+
+problem: |
+  Job seekers waste **hours copy-pasting** their profile into different ATS portals and manually tweaking
+  résumés for each position.  
+  Re-entering the same data leads to frustration and prevents deep interview prep.
+
+solution: |
+  * **Headless scraping & enrichment** — Playwright crawls Indeed, LinkedIn, and 4 other boards hourly,
+    normalising postings into a single SQLite DB.
+  * **AI résumé writer** — LangChain + OpenAI fine-tuned prompt maps posting → personalised résumé section.
+  * **One-click apply** — Browser automation logs in and submits the generated PDF & cover letter.
+---

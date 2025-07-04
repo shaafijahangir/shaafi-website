@@ -1,0 +1,22 @@
+---
+title: "Emergency-Room Triage Optimiser"
+slug: er-triage
+date: "2023-03-14"
+category: ["Health Tech", "Data Science"]
+status: prototype
+stack: ["Python", "FastAPI", "scikit-learn", "Plotly Dash"]
+pic1: "/images/er-triage/priority-flow.png"
+pic2: "/images/er-triage/confusion-matrix.png"
+excerpt: "Machine-learning triage scores that cut ER wait-times by prioritising high-risk patients."
+repo: "https://github.com/Priority-Health-Canada/PriorityHealth"
+tags: ["featured", "personal"]
+
+problem: |
+  BC emergency rooms rely on manual **Injury Severity Score (ISS)** combined with nurse intuition,
+  causing inconsistent wait-times and equity gaps for under-represented groups.
+
+solution: |
+  1. **Data pipeline** — Ingested anonymised 35 000-visit dataset; engineered 27 features incl. comorbidities.
+  2. **Gradient-boosted model** — Improves critical-case recall by **+18 pp** over ISS baseline.
+  3. **Interactive dashboard** — Real-time bed allocation suggestions, colour-coded risk heat-map.
+---

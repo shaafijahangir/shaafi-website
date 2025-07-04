@@ -179,4 +179,81 @@ html {
   .self-start {
     align-self: start;
   }
+    /* hide native scrollbar */
+  .hide-scroll {
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;       /* IE 10+   */
+  }
+  .hide-scroll::-webkit-scrollbar { display: none; }  /* Chrome / Safari */
+
+  /* snap scrolling */
+  .scroll-snap-x          { scroll-snap-type: x mandatory; }
+  .scroll-snap-align-start { scroll-snap-align: start; }
+
+  .arrow-btn{
+    @apply absolute z-10 bg-white border shadow rounded-full w-10 h-10 flex items-center justify-center transition;
+    top:50%; transform:translateY(-50%);
+  }
+  .arrow-btn:hover:not(.arrow-disabled){ @apply bg-gray-100; }
+  .arrow-disabled{ opacity:.4; cursor:not-allowed; }
+
+  .card-fade{
+    transition:opacity .35s cubic-bezier(.4,0,.2,1), transform .35s cubic-bezier(.4,0,.2,1);
+  }
+  
+  .pagination-fade {
+    transition: opacity .25s ease;
+  }
+  /* ---------- Pagination dot look & fade ---------- */
+  .page-dot {
+    width: 0.75rem;          /* w-3  */
+    height: 0.75rem;         /* h-3  */
+    border-radius: 9999px;   /* rounded-full */
+    background-color: #d1d5db;
+    opacity: .35;            /* subtle “dim” */
+    transition:
+      background-color 300ms ease-out,
+      opacity          300ms ease-out,
+      transform        300ms ease-out;   /* keeps the scale pop you liked */
+  }
+
+  .page-dot{
+    width:0.75rem;height:0.75rem;border-radius:9999px;
+    background:#d1d5db;opacity:.35;
+    transition:background-color .3s ease-out,opacity .3s ease-out,transform .3s ease-out
+  }
+  .page-dot.active{
+    background:#111827;opacity:1;transform:scale(1.25)
+  }
+  .page-dot{
+    width:0.75rem;              /* w-3  */
+    height:0.75rem;             /* h-3  */
+    border-radius:9999px;       /* rounded-full */
+    background:#d1d5db;         /* light gray base */
+    opacity:0;                  /* start invisible */
+    transform:scale(1);
+    transition:background-color .3s ease-out,
+              opacity          .3s ease-out,
+              transform        .3s ease-out;
+  }
+
+  /* immediately-left / right neighbour that should be visible (dim) */
+  .page-dot.dim{
+    opacity:.35;                /* fade-in to 35 % */
+  }
+
+  /* current position */
+  .page-dot.current{
+    background:#111827;         /* dark pill */
+    opacity:1;                  /* fully visible */
+    transform:scale(1.25);      /* little pop */
+  }
+
+  /* keep element in flow but fully transparent */
+  .page-dot.hidden{
+    pointer-events:none;        /* ignore clicks */
+    opacity:0;                  /* fade to zero */
+  }
 }
+
+
