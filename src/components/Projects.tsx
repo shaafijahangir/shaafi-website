@@ -2,6 +2,7 @@
 import React, { useMemo, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getProjects } from "@/lib/getProjects";
+import { cn } from "@/lib/utils";
 
 /* ───────────────────────────────────────────── */
 const FILTERS       = ["Featured", "Personal", "Work"] as const;
@@ -74,7 +75,11 @@ export default function Projects() {
             onClick={() => slide("left")}
             disabled={idx === 0}
             aria-label="Previous"
-            className={`arrow-btn -left-8 ${idx === 0 ? "arrow-disabled" : ""}`}
+            className={cn(
+              "arrow-btn left-2 sm:-left-4 md:-left-8",
+              idx === 0 && "arrow-disabled"
+            )}
+
           >
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M15 19l-7-7 7-7" />
@@ -137,7 +142,8 @@ export default function Projects() {
             onClick={() => slide("right")}
             disabled={idx === max}
             aria-label="Next"
-            className={`arrow-btn -right-20 ${idx === max ? "arrow-disabled" : ""}`}
+            className={`arrow-btn right-2 sm:right-4 md:-right-6 lg:-right-20 ${idx === max ? "arrow-disabled" : ""}`}
+
           >
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 5l7 7-7 7" />
