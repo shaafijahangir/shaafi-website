@@ -13,7 +13,10 @@ const SLIDE_MS      = 350;
 /* ───────────────────────────────────────────── */
 
 export default function Projects() {
-  const projects = getProjects();
+  const projects = getProjects().sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
 
   /* state */
   const [filter, setFilter] = useState<(typeof FILTERS)[number]>("Featured");

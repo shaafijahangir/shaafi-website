@@ -1,0 +1,92 @@
+---
+title: "Priority Health: Patient Risk Triage System"
+slug: priority-health
+date: "2023-03-22"
+category: ["Healthcare", "Hackathon"]
+status: in-progress
+stack: ["React", "Express", "MongoDB"]
+client: "Island Health Code Hack 2023"
+demo: "https://priorityhealth.onrender.com"
+pic1: "/images/priority-health/landing-page.png"
+pic2: "/images/priority-health/form.png"
+excerpt: "A triage-first healthcare app that prioritizes ER patients using risk scores and digital intake forms."
+tags: ["personal", "featured"]
+---
+
+## 👋 Context
+
+Priority Health is a patient-first triage system designed during Island Health’s Code Hack 2023. It aims to reduce emergency room wait times by prioritizing patients based on a medically informed risk score — not just arrival time.
+
+---
+
+## 💡 The Problem
+
+ER wait times across Canada can exceed **8 hours** — particularly in urban areas. Many patients with serious but “invisible” symptoms wait too long because triage isn’t automated or data-driven.
+
+---
+
+## ⚙️ How It Works: Step-by-Step Walkthrough
+
+### 🏠 Step 1: Public Landing Page
+
+Users land on a welcoming homepage prompting them to register.
+
+<img src="/images/priority-health/landing-page.png" alt="Landing Page" />
+
+---
+
+### 📝 Step 2: Patient Intake Form
+
+They fill out a comprehensive intake form, providing:
+
+- Personal information
+- Medical history (chronic pain, prescription use, mental health)
+- Drug/alcohol usage
+- ADLs (Activities of Daily Living)
+
+<img src="/images/priority-health/form.png" alt="Form - Personal Info" />
+
+---
+
+### 🔐 Step 3: Admin or Staff Login
+
+Authorized hospital staff can log in through a secure portal to manage patient submissions.
+
+<img src="/images/priority-health/admin.png" alt="Admin Login" />
+
+---
+
+### 📊 Step 4: Risk Score Result
+
+Once submitted, the system generates a **Patient Metric Score** between 0–10 (based on the ISS model) and displays it to the user.
+
+<img src="/images/priority-health/result.png" alt="Submission Score" />
+
+This score allows hospital staff to better triage patients **before** they enter the queue physically.
+
+---
+
+## 🌐 Tech Stack
+
+- **Frontend:** React
+- **Backend:** Express.js
+- **Database:** MongoDB
+- **Deployment:** Render
+- **Live Demo:** [priorityhealth.onrender.com](https://priorityhealth.onrender.com)
+
+---
+
+## 🧠 Lessons Learned
+
+- UX must balance sensitivity and honesty — some questions are deeply personal
+- Metric scoring logic must be fair, unbiased, and medically backed
+- Deploying a patient-facing system requires transparency and trust
+
+---
+
+## 🔍 What’s Next
+
+- FHIR integration for EMR compatibility
+- OAuth login for verified staff
+- Smart queue estimation using historical triage logs
+- Multilingual support and screen reader accessibility

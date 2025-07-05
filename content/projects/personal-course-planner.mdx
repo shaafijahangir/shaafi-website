@@ -1,0 +1,109 @@
+---
+title: "UVic AI Course Planner"
+slug: personal-course-planner
+date: "2025-01-05"
+category: ["Education Tech", "AI Automation", "Chatbot"]
+status: complete
+stack:
+  [
+    "React",
+    "Uvicorn",
+    "Puppeteer",
+    "Tailwind",
+    "Cohere",
+    "Supabase",
+    "Python",
+    "FastAPI",
+    "Playwright",
+    "Streamlit",
+  ]
+pic1: "/images/personal-course-planner/landing-page.png"
+pic2: "/images/personal-course-planner/form.png"
+pic3: "/images/personal-course-planner/course-completed.png"
+pic4: "/images/personal-course-planner/chatbot.png"
+excerpt: "An AI-powered academic assistant that helps UVic students select smart courses, avoid scheduling conflicts, and receive tailored recommendations."
+repo: "https://github.com/shaafijahangir/uvic-course-planner"
+tags: ["featured", "personal"]
+---
+
+## 👋 Context
+
+I built this tool to help UVic students (including myself) navigate course planning more intelligently. Traditional systems are fragmented, outdated, and lack personalization — so I designed an end-to-end planner powered by FastAPI, Cohere, and a clean React UI.
+
+The result: a chatbot-guided experience that suggests real courses based on your academic path, interests, and co-op plans.
+
+---
+
+## 💡 The Problem
+
+- UVic’s existing tools don’t offer personalized course guidance.
+- Students often miss prerequisites or pick inefficient course combinations.
+- Academic advising is slow and generic — not tailored to your year, major, or graduation track.
+
+---
+
+## ⚙️ The Solution
+
+- **🏠 Landing Page**  
+  Welcomes users with a clear CTA and value props.
+
+  <img
+    src="/images/personal-course-planner/landing-page.png"
+    alt="Landing Page"
+  />
+
+- **🧾 Academic Form**  
+  Collects your program details: major, year, electives, minor, co-op progress, and more.
+
+  <img
+    src="/images/personal-course-planner/form.png"
+    alt="Academic Form Input"
+  />
+
+- **✅ Course Selector**  
+  Filters available courses by your program and tracks selected ones live.
+
+  <img
+    src="/images/personal-course-planner/course-completed.png"
+    alt="Select Courses Page"
+  />
+
+- **🤖 AI Chat Assistant**  
+  A Cohere-powered chatbot that responds to queries like:
+  - “Give me 6 courses for next term — 3 core and 3 electives.”
+  - “What should I take if I want to go into AI?”
+
+  <img
+    src="/images/personal-course-planner/chatbot.png"
+    alt="Chatbot Planning Assistant"
+  />
+
+---
+
+## 🛠 Tech Stack
+
+- `React + Tailwind` — responsive frontend UI
+- `FastAPI + Uvicorn` — backend for data handling
+- `Supabase` — stores course info and student preferences
+- `Cohere (Command-R)` — LLM agent for course suggestions
+- `Playwright` — used to scrape course data from public UVic sources
+- `Python + Streamlit` — rapid prototyping and admin dashboard
+
+---
+
+## 🧠 Lessons Learned
+
+- Prompt tuning drastically affects LLM output quality.
+- Real-time, contextual replies outperform static advising pages.
+- Clean UX, especially during course selection, builds user trust fast.
+
+---
+
+## 🔍 What’s Next
+
+- Add calendar view and conflict detection
+- Export course plans as PDF or ICS files
+- Launch an advisor dashboard for approvals and feedback
+- Extend to other universities with a generalized schema
+
+---

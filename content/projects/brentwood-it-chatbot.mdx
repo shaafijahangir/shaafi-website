@@ -1,0 +1,74 @@
+---
+title: "Brentwood: AI Helpdesk Chatbot"
+slug: brentwood-ai-chatbot
+date: "2024-11-10"
+company: "Brentwood College School"
+category: ["AI", "Automation", "Chatbot"]
+status: complete
+stack: ["OpenAI GPT-4"]
+pic1: "/images/brentwood-ai-chatbot/pic1.png"
+excerpt: "A GPT-4-powered assistant that resolves 80% of IT tickets for Brentwood College's helpdesk."
+tags: ["featured", "work"]
+---
+
+## 👋 Context & My Role
+
+Brentwood College’s IT team handled over **400+ support tickets each month**, often repeating answers to common questions like WiFi troubleshooting, password resets, or printing issues.
+
+I led the development of an AI-powered helpdesk chatbot designed to act as a **first line of support** for students and staff, reducing strain on the IT team and improving response times.
+
+---
+
+## 💡 The Problem
+
+- Over 30 disjointed systems (Meraki, JAMF, Okta, AD, etc.) created context-switching fatigue.
+- Most student tickets involved repeatable fixes already documented online, but often ignored.
+- Long resolution times for simple issues (e.g., "I can't print") caused delays across campus.
+
+---
+
+## ⚙️ The Solution
+
+- Built a **GPT-4 chatbot** trained on internal SOPs and IT documentation.
+- Integrated **vector-based search** so the bot could retrieve the most relevant answer dynamically.
+- Added logic for **step-by-step walk-throughs** for common tasks (e.g., fixing "Hold for Authentication" print errors).
+- Included support for multilingual queries and after-hours guidance.
+
+<img
+  src="/images/brentwood-ai-chatbot/pic1.png"
+  alt="Brentwood AI chatbot interface"
+/>
+
+<img
+  src="/images/brentwood-ai-chatbot/pic2.png"
+  alt="Brentwood AI chatbot interface"
+/>
+
+<img
+  src="/images/brentwood-ai-chatbot/pic3.png"
+  alt="Brentwood AI chatbot interface"
+/>
+
+---
+
+## 🧠 Lessons Learned
+
+- **Prompt Engineering Matters**: Early versions gave verbose answers. We refined prompts based on real logs to match Brentwood’s student-friendly tone.
+- **Small Automation = Big Impact**: Even covering the top 5 ticket types saved hours weekly for staff.
+- **Security & Privacy**: Kept logs anonymized and used **role-based access control** to avoid sensitive data leaks.
+
+---
+
+## 🔍 What’s Next
+
+We're working on training a **local LLM** (e.g., GPT-NeoX) on years of historical tickets to:
+
+- Auto-tag and triage incoming requests
+- Predict emerging issues before they escalate
+- Further reduce manual triage overhead
+
+---
+
+## ✅ Takeaway
+
+A simple chatbot, when aligned with real pain points, can become a **scalable extension of the IT team** — especially valuable in a school environment where students need fast, friendly tech support.

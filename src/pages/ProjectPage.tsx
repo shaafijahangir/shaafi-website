@@ -34,9 +34,9 @@ export default function ProjectPage() {
 
   /* every inline <img> becomes click-to-zoom */
   const mdxComponents = {
+    PhotoView, // 🔑 expose to MDX runtime
     img: (props: any) => (
       <PhotoView src={props.src}>
-        {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <img {...props} className="cursor-zoom-in rounded-lg" />
       </PhotoView>
     ),
@@ -58,7 +58,7 @@ export default function ProjectPage() {
             </p>
           </header>
 
-          {/* Problem / Solution */}
+          {/* Problem / Solution
           {frontmatter.problem && (
             <Callout title="The Problem" color="gold">
               <MarkdownBlock markdown={frontmatter.problem} />
@@ -86,18 +86,20 @@ export default function ProjectPage() {
                 />
               )}
             </Callout>
-          )}
+          )} */}
 
           {/* long-form body */}
-          <PhotoProvider maskOpacity={0.9}>
+          <div className="prose max-w-none">
             <MDXProvider components={mdxComponents}>
-              <MdxBody />
+              <PhotoProvider maskOpacity={0.9}>
+                <MdxBody />
+              </PhotoProvider>
             </MDXProvider>
-          </PhotoProvider>
+          </div>
         </div>
 
         {/* RIGHT column – sticky details */}
-        <aside className="sticky-card flex flex-col gap-6">
+        <aside className="sticky-card flex flex-col gap-6 bg-white shadow-md rounded-xl p-6 border border-gray-100">
           <h2 className="text-lg font-semibold">Project Details</h2>
           <Detail
             label="Date"
@@ -106,6 +108,9 @@ export default function ProjectPage() {
               year: "numeric",
             })}
           />
+          {frontmatter.company && (
+            <Detail label="Company" value={frontmatter.company} />
+          )}
           <Detail label="Status" value={frontmatter.status} />
           <Detail label="Category" value={frontmatter.category.join(", ")} />
           <Detail label="Stack" value={frontmatter.stack.join(" · ")} />

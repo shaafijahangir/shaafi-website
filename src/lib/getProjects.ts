@@ -6,6 +6,7 @@ export interface ProjectMeta {
   title: string
   slug: string
   date: string
+  company: string
   category: string[]
   status: string
   stack: string[]
