@@ -190,9 +190,10 @@ html {
   .scroll-snap-x          { scroll-snap-type: x mandatory; }
   .scroll-snap-align-start { scroll-snap-align: start; }
 
-  .arrow-btn{
+  .arrow-btn {
     @apply absolute z-10 bg-white border shadow rounded-full w-10 h-10 flex items-center justify-center transition;
-    top:50%; transform:translateY(-50%);
+    top: 50%;
+    transform: translateY(-50%);
   }
   .arrow-btn:hover:not(.arrow-disabled){ @apply bg-gray-100; }
   .arrow-disabled{ opacity:.4; cursor:not-allowed; }

@@ -1,31 +1,32 @@
+/* src/components/Projects.tsx */
 import React, { useMemo, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getProjects } from "@/lib/getProjects";
 
 /* ───────────────────────────────────────────── */
-const FILTERS       = ["Featured", "Personal", "Work"] as const;  // ← no “All”
+const FILTERS       = ["Featured", "Personal", "Work"] as const;
 const CARD_WIDTH    = 320;
 const CARD_GAP      = 24;
 const CARDS_VISIBLE = 3;
 const SLIDE_MS      = 350;
 /* ───────────────────────────────────────────── */
 
-function Projects() {
+export default function Projects() {
   const projects = getProjects();
 
   /* state */
-  const [filter, setFilter] = useState<(typeof FILTERS)[number]>("Featured"); // ← start at Featured
+  const [filter, setFilter] = useState<(typeof FILTERS)[number]>("Featured");
   const [idx,    setIdx]    = useState(0);
   const [lock,   setLock]   = useState(false);
 
-  /* filtered list – just tag-match now */
+  /* filtered list */
   const list = useMemo(
     () => projects.filter((p) => p.tags?.includes(filter.toLowerCase())),
     [projects, filter]
   );
 
-  const max  = Math.max(0, list.length - CARDS_VISIBLE);
-  const clampedIdx = Math.min(idx, max);
+  const max         = Math.max(0, list.length - CARDS_VISIBLE);
+  const clampedIdx  = Math.min(idx, max);
 
   /* reset scroll on filter change */
   useEffect(() => setIdx(0), [filter]);
@@ -45,7 +46,7 @@ function Projects() {
 
   /* ───────────────────────────────────────── */
   return (
-    <section id="projects" className="py-16 bg-[#f7f8fa]">
+    <section id="projects" className="py-16 bg-[#f7f8fa] overflow-x-hidden">
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-3xl font-bold mb-6">Projects</h2>
 
@@ -57,11 +58,9 @@ function Projects() {
               onClick={() => setFilter(f)}
               aria-pressed={filter === f}
               className={`px-4 py-1 rounded-full text-sm font-medium transition
-                ${
-                  filter === f
-                    ? "bg-gray-900 text-white"
-                    : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-                }`}
+                ${filter === f
+                  ? "bg-gray-900 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"}`}
             >
               {f}
             </button>
@@ -70,20 +69,20 @@ function Projects() {
 
         {/* carousel */}
         <div className="relative flex items-center pb-10 select-none">
-          {/* ← */}
+          {/* ← arrow */}
           <button
             onClick={() => slide("left")}
             disabled={idx === 0}
             aria-label="Previous"
-            className={`arrow-btn left-0 ${idx === 0 ? "arrow-disabled" : ""}`}
+            className={`arrow-btn -left-8 ${idx === 0 ? "arrow-disabled" : ""}`}
           >
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
-          {/* track */}
-          <div className="flex-1 overflow-visible">
+          {/* track wrapper – only ONE instance */}
+          <div className="flex-1 min-w-0 overflow-visible px-2 sm:px-4">
             <div
               className="flex gap-6"
               style={{
@@ -123,7 +122,6 @@ function Projects() {
                         </span>
                       </div>
                       <p className="text-gray-500 text-sm mb-4 flex-grow">{p.excerpt}</p>
-
                       <Link to={`/project/${p.slug}`} className="button text-sm w-full text-center">
                         View Project
                       </Link>
@@ -134,12 +132,12 @@ function Projects() {
             </div>
           </div>
 
-          {/* → */}
+          {/* → arrow */}
           <button
             onClick={() => slide("right")}
             disabled={idx === max}
             aria-label="Next"
-            className={`arrow-btn right-0 ${idx === max ? "arrow-disabled" : ""}`}
+            className={`arrow-btn -right-20 ${idx === max ? "arrow-disabled" : ""}`}
           >
             <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 5l7 7-7 7" />
@@ -147,24 +145,13 @@ function Projects() {
           </button>
         </div>
 
-        {/* minimal pagination strip (unchanged) */}
+        {/* pagination strip */}
         <div className="flex justify-center items-center mt-6 gap-2">
-          <span
-            className={`w-3 h-3 rounded-full bg-gray-300 transition-opacity duration-300
-                        ${idx > 0 ? "opacity-50" : "opacity-0"}`}
-          />
-          <span
-            className="w-3 h-3 rounded-full bg-gray-900 transition-transform duration-300
-                       opacity-100 scale-125"
-          />
-          <span
-            className={`w-3 h-3 rounded-full bg-gray-300 transition-opacity duration-300
-                        ${idx < max ? "opacity-50" : "opacity-0"}`}
-          />
+          <span className={`w-3 h-3 rounded-full bg-gray-300 transition-opacity duration-300 ${idx > 0 ? "opacity-50" : "opacity-0"}`} />
+          <span className="w-3 h-3 rounded-full bg-gray-900 transition-transform duration-300 opacity-100 scale-125" />
+          <span className={`w-3 h-3 rounded-full bg-gray-300 transition-opacity duration-300 ${idx < max ? "opacity-50" : "opacity-0"}`} />
         </div>
       </div>
     </section>
   );
 }
-
-export default Projects;
