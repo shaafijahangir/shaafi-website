@@ -107,13 +107,17 @@ export default function Projects() {
                   className="flex-none w-72 sm:w-80 border border-gray-200 bg-white transition hover:border-black scroll-snap-align-start bg-white rounded-2xl  overflow-visible flex flex-col"
                 >
                   {p.pic1 && (
-                    <div className="rounded-t-2xl overflow-hidden">
-                      <img
-                        src={p.pic1}
-                        alt={p.title}
-                        className="w-full h-40 object-cover bg-gray-100"
-                      />
-                    </div>
+                    <>
+                      <div className="rounded-t-2xl overflow-hidden">
+                        <img
+                          src={p.pic1}
+                          alt={p.title}
+                          className="w-full h-40 object-cover bg-gray-100"
+                        />
+                      </div>
+                      {/* Grey separator line */}
+                      <div className="h-px bg-gray-200 w-full" />
+                    </>
                   )}
                   <div className="p-6 flex flex-col h-full">
                     <div className="flex justify-between items-center mb-2">
