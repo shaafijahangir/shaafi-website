@@ -172,9 +172,7 @@ html {
     }
   }
   .content-wide {
-    @apply max-w-6xl mx-auto   /* ≈ 1152 px container */
-    px-4 sm:px-6 lg:px-8        /* side padding */
-    pt-10 lg:pt-14;             /* top padding */
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-1.5 lg:pt-1.5;
   }
   .self-start {
     align-self: start;
@@ -278,6 +276,62 @@ html {
   .prose img {
     @apply rounded-xl mt-6 shadow-md;
   }
+  .scroll-snap-x          { scroll-snap-type: x mandatory; }
+  .scroll-snap-align-start { scroll-snap-align: start; }
+
+  .hide-scroll {
+    scrollbar-width: none;          /* Firefox */
+    -ms-overflow-style: none;       /* IE 10+ */
+  }
+
+  .hide-scroll::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+
+  .arrow-btn {
+    @apply absolute z-10 bg-white border shadow rounded-full w-10 h-10 flex items-center justify-center transition opacity-40 hover:opacity-90;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .arrow-btn:hover {
+    @apply bg-gray-100;
+  }
+  .project-card {
+    @apply bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300;
+  }
+
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+  }
+  .snap-start {
+    scroll-snap-align: start;
+  }
+  .hide-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scroll {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scroll-snap-x {
+    scroll-snap-type: x mandatory;
+  }
+  .scroll-snap-align-start {
+    scroll-snap-align: start;
+  }
+  .hide-scroll::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scroll {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .card-shadow {
+    box-shadow:
+      0 10px 10px rgba(0, 0, 0, 0.1), 
+      0 10px 10px rgba(0, 0, 0, 0.2);
+  }
+
 }
 
 

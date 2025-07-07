@@ -1,7 +1,6 @@
-// src/pages/ProjectPage.tsx
+import { useEffect, useMemo } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { ProjectMeta } from "@/lib/getProjects";
-import { useMemo, ReactNode } from "react";
 import { MDXProvider } from "@mdx-js/react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import "react-photo-view/dist/react-photo-view.css";
@@ -28,13 +27,18 @@ export default function ProjectPage() {
     () => Object.values(modules).find((m) => m.frontmatter.slug === slug),
     [slug]
   );
+
+  // ✅ Scroll to top when this page loads
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "instant" });
+  }, []);
+
   if (!project) return <Navigate to="/" replace />;
 
   const { frontmatter, default: MdxBody } = project;
 
-  /* every inline <img> becomes click-to-zoom */
   const mdxComponents = {
-    PhotoView, // 🔑 expose to MDX runtime
+    PhotoView,
     img: (props: any) => (
       <PhotoView src={props.src}>
         <img {...props} className="cursor-zoom-in rounded-lg" />
@@ -48,47 +52,15 @@ export default function ProjectPage() {
       <div className="project-grid">
         {/* LEFT column */}
         <div>
-          {/* hero */}
+          {/* Hero */}
           <header className="mb-12">
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
               {frontmatter.title}
             </h1>
-            <p className="mt-2 text-muted-foreground">
-              {frontmatter.excerpt}
-            </p>
+            <p className="mt-2 text-muted-foreground">{frontmatter.excerpt}</p>
           </header>
 
-          {/* Problem / Solution
-          {frontmatter.problem && (
-            <Callout title="The Problem" color="gold">
-              <MarkdownBlock markdown={frontmatter.problem} />
-              {frontmatter.pic1 && (
-                <motion.img
-                  src={frontmatter.pic1}
-                  alt={frontmatter.title}
-                  whileHover={{ y: -4, scale: 1.01 }}
-                  transition={{ type: "spring", stiffness: 250, damping: 20 }}
-                  className="surface-card w-full mt-10"
-                />
-              )}
-            </Callout>
-          )}
-          {frontmatter.solution && (
-            <Callout title="Our Solution" color="teal">
-              <MarkdownBlock markdown={frontmatter.solution} />
-              {frontmatter.pic1 && (
-                <motion.img
-                  src={frontmatter.pic1}
-                  alt={frontmatter.title}
-                  whileHover={{ y: -4, scale: 1.01 }}
-                  transition={{ type: "spring", stiffness: 250, damping: 20 }}
-                  className="surface-card w-full mt-10"
-                />
-              )}
-            </Callout>
-          )} */}
-
-          {/* long-form body */}
+          {/* Long-form MDX body */}
           <div className="prose max-w-none">
             <MDXProvider components={mdxComponents}>
               <PhotoProvider maskOpacity={0.9}>
@@ -114,23 +86,22 @@ export default function ProjectPage() {
           <Detail label="Status" value={frontmatter.status} />
           <Detail label="Category" value={frontmatter.category.join(", ")} />
           <Detail label="Stack" value={frontmatter.stack.join(" · ")} />
-            {frontmatter.repo && (
-              <Detail
-                label="Repo"
-                value={
-                  <a
-                    href={frontmatter.repo}
-                    target="_blank"
-                    className="underline hover:text-primary"
-                  >
-                    GitHub
-                  </a>
-                }
-              />
-            )}
+          {frontmatter.repo && (
+            <Detail
+              label="Repo"
+              value={
+                <a
+                  href={frontmatter.repo}
+                  target="_blank"
+                  className="underline hover:text-primary"
+                >
+                  GitHub
+                </a>
+              }
+            />
+          )}
 
-
-          {/* buttons */}
+          {/* Action buttons */}
           <div className="flex flex-wrap gap-3 pt-2">
             {frontmatter.links?.repo && (
               <a href={frontmatter.links.repo} target="_blank" className="button">
@@ -162,9 +133,9 @@ export default function ProjectPage() {
   );
 }
 
-/* ---------- helpers ---------- */
+/* ---------- helper components ---------- */
 
-function Detail({ label, value }: { label: string; value: ReactNode }) {
+function Detail({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div className="text-sm">
       <p className="opacity-60 mb-1 uppercase tracking-wide">{label}</p>
