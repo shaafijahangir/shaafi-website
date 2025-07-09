@@ -32,6 +32,15 @@ const Hero = () => {
               >
                 View Experience
               </a>
+
+              <a
+                href="/resume.pdf"
+                className="button bg-muted text-foreground hover:bg-muted/80"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Download Resume
+              </a>
             </div>
             
             <div className="pt-4 flex items-center space-x-4">

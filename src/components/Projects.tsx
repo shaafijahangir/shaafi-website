@@ -7,6 +7,12 @@ import { cn } from "@/lib/utils";
 const FILTERS = ["Featured", "Personal", "Work"] as const;
 const CARD_WIDTH = 320;
 const CARD_GAP = 24;
+
+const TAG_STYLES: Record<string, string> = {
+  featured: "bg-orange-100 text-orange-800",
+  personal: "bg-green-100 text-green-800",
+  work: "bg-blue-100 text-blue-800",
+};
 /* ───────────────────────────────────────────── */
 
 export default function Projects() {
@@ -20,10 +26,14 @@ export default function Projects() {
   const [cardsVisible, setCardsVisible] = useState(3);
   const [scrollIndex, setScrollIndex] = useState(0);
 
-  const list = useMemo(
-    () => projects.filter((p) => p.tags?.includes(filter.toLowerCase())),
-    [projects, filter]
-  );
+  const list = useMemo(() => {
+    const filtered = projects.filter((p) =>
+      p.tags?.includes(filter.toLowerCase())
+    );
+    const unique = Array.from(new Map(filtered.map(p => [p.slug, p])).values());
+    return unique;
+  }, [projects, filter]);
+
 
   useEffect(() => {
     const updateVisibleCards = () => {
@@ -71,10 +81,11 @@ export default function Projects() {
               key={f}
               onClick={() => setFilter(f)}
               aria-pressed={filter === f}
-              className={`px-4 py-1 rounded-full text-sm font-medium transition
-                ${filter === f
-                  ? "bg-gray-900 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"}`}
+              className={cn(
+                "px-4 py-1 rounded-full text-xs font-medium transition cursor-pointer",
+                TAG_STYLES[f.toLowerCase()],
+                filter === f ? "ring-1 ring-black/10 shadow-sm" : "opacity-80 hover:opacity-100"
+              )}
             >
               {f}
             </button>
@@ -97,7 +108,7 @@ export default function Projects() {
           {/* scrollable track */}
           <div
             ref={railRef}
-            className="flex-1 overflow-x-auto hide-scroll scroll-snap-x pb-5 pl-4 sm:pl-8"
+            className="flex-1 overflow-x-auto hide-scroll scroll-snap-x pb-5 ml-1"
             style={{ overflowY: "visible" }}
           >
             <div className="flex gap-6 min-w-max">
@@ -119,17 +130,38 @@ export default function Projects() {
                       <div className="h-px bg-gray-200 w-full" />
                     </>
                   )}
-                  <div className="p-6 flex flex-col h-full">
-                    <div className="flex justify-between items-center mb-2">
-                      <h3 className="text-lg font-semibold">{p.title}</h3>
-                      <span className="bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full">
-                        {new Date(p.date).toLocaleDateString("en-US", {
-                          month: "short",
-                          year: "numeric"
-                        }).toUpperCase()}
-                      </span>
+                  <div className="p-6 flex flex-col h-full min-h-[300px]">
+                    <div className="mb-2">
+                      <div className="flex justify-between items-center">
+                        <h3 className="text-lg font-semibold">{p.title}</h3>
+                        <span className="bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full">
+                          {new Date(p.date).toLocaleDateString("en-US", {
+                            month: "short",
+                            year: "numeric"
+                          }).toUpperCase()}
+                        </span>
+                      </div>
+
+                      {/* Tag badges */}
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {p.tags?.map((tag) => (
+                          <button
+                            key={tag}
+                            onClick={() =>
+                              setFilter(tag.charAt(0).toUpperCase() + tag.slice(1) as typeof FILTERS[number])
+                            }
+                            className={cn(
+                              "px-3 py-1 text-xs font-medium rounded-full transition",
+                              TAG_STYLES[tag] || "bg-gray-200 text-gray-800"
+                            )}
+                          >
+                            {tag}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                    <p className="text-gray-500 text-sm mb-4 flex-grow">{p.excerpt}</p>
+
+                    <p className="text-gray-500 text-sm mb-3 flex-grow">{p.excerpt}</p>
                     <Link
                       to={`/project/${p.slug}`}
                       className="mt-auto text-sm w-full text-center bg-black text-white py-2 rounded-md hover:bg-gray-800 transition"
