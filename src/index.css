@@ -57,6 +57,10 @@
     @apply bg-background text-foreground font-sans;
   }
 
+  html.dark body {
+    @apply bg-zinc-900 text-white transition-colors duration-300;
+  }
+
   /* Custom Styles */
   .section-padding {
     @apply py-16 px-6 md:px-8 lg:px-16 xl:px-32;
@@ -67,13 +71,13 @@
   }
 
   .card {
-    @apply bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300;
+    @apply bg-white dark:bg-zinc-800 dark:text-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300;
   }
 
   .button {
-    @apply bg-primary text-primary-foreground rounded-full py-2 px-6 text-sm font-medium 
-    transition-colors duration-300 hover:bg-primary/90 focus:outline-none focus:ring-2 
-    focus:ring-ring focus:ring-offset-2;
+    @apply bg-primary text-primary-foreground dark:bg-white dark:text-black rounded-full py-2 px-6 text-sm font-medium 
+      transition-colors duration-300 hover:bg-primary/90 dark:hover:bg-zinc-200 
+      focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2;
   }
 
   .link {
@@ -81,7 +85,7 @@
   }
 
   .nav-link {
-    @apply px-4 py-2 text-sm font-medium text-primary hover:text-primary/80 transition-colors duration-300;
+    @apply px-4 py-2 text-sm font-medium text-primary dark:text-white hover:text-primary/80 dark:hover:text-zinc-300 transition-colors duration-300;
   }
 
   .experience-card {
@@ -89,15 +93,17 @@
   }
 
   .badge {
-    @apply bg-secondary text-secondary-foreground text-xs font-medium py-1 px-3 rounded-full;
+    @apply bg-secondary dark:bg-zinc-700 text-secondary-foreground dark:text-white text-xs font-medium py-1 px-3 rounded-full;
   }
-
   .tech-badge {
-    @apply bg-secondary text-secondary-foreground text-xs font-medium py-1 px-2 rounded-full mr-2 mb-2;
+    @apply bg-secondary dark:bg-zinc-700 text-secondary-foreground dark:text-white text-xs font-medium py-1 px-2 rounded-full mr-2 mb-2;
+  }
+  .badge-pill {
+    @apply inline-block rounded-full bg-secondary dark:bg-zinc-700 text-secondary-foreground dark:text-white text-[11px] font-medium px-3 py-1 uppercase tracking-wide;
   }
 
   .project-card {
-    @apply bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300;
+    @apply bg-white dark:bg-zinc-800 dark:text-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300;
   }
 }
 
@@ -134,19 +140,17 @@ html {
 
   /* soft card look (same as project cards) */
   .card-surface {
-    @apply rounded-xl bg-white shadow-md;
+    @apply rounded-xl bg-white dark:bg-zinc-800 dark:text-white shadow-md;
   }
+
   .prose video {
     @apply card-surface mt-6;
   }
 
-  .badge-pill {
-    @apply inline-block rounded-full bg-secondary text-secondary-foreground text-[11px] font-medium px-3 py-1 uppercase tracking-wide;
-  }
 
   /* soft “card” background like home cards */
   .surface-card {
-    @apply bg-white rounded-xl shadow-md;
+    @apply bg-white dark:bg-zinc-800 dark:text-white rounded-xl shadow-md;
   }
 
     /* 2-col layout that collapses on small screens */
@@ -162,9 +166,9 @@ html {
 
   /* sticky details card on desktop */
   .sticky-card {
-    @apply surface-card p-6;
-    @apply self-start; 
+    @apply surface-card p-6 self-start;
   }
+
   @screen md {
     .sticky-card {
       position: sticky;
@@ -254,23 +258,16 @@ html {
     opacity:0;                  /* fade to zero */
   }
   .prose h2 {
-    @apply text-2xl font-bold mt-12 mb-4 text-gray-900;
+    @apply text-2xl font-bold mt-12 mb-4 text-gray-900 dark:text-white;
   }
-
-  .prose p {
-    @apply mb-4 text-gray-700 leading-relaxed;
+  .prose p, .prose ul {
+    @apply mb-4 leading-relaxed text-gray-700 dark:text-zinc-300;
   }
-
-  .prose ul {
-    @apply list-disc pl-6 mb-6 text-gray-700;
-  }
-
-  .prose img {
-    @apply rounded-xl shadow-md my-6;
-  }
-
   .prose hr {
-    @apply my-12 border-t border-gray-200;
+    @apply my-12 border-t border-gray-200 dark:border-zinc-700;
+  }
+  .prose img {
+    @apply rounded-xl mt-6 shadow-md;
   }
   
   .prose img {
