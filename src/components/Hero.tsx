@@ -16,8 +16,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">
-              Computer Science graduate and experienced Systems Analyst
-              with expertise in building efficient technical solutions and automating workflows.
+              Computer Science graduate specializing in full-stack development, software automation, and more.
             </p>
             
             <div className="flex flex-wrap gap-3 pt-2">
@@ -27,10 +26,10 @@ const Hero = () => {
               </a>
               
               <a 
-                href="#experience" 
+                href="#projects" 
                 className="button bg-secondary text-secondary-foreground hover:bg-secondary/80"
               >
-                View Experience
+                View Projects
               </a>
 
               <a
