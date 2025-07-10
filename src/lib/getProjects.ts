@@ -13,10 +13,12 @@ export interface ProjectMeta {
   links: Links
   pic1: string
   excerpt: string
+  started?: string // ← add
+  ended?: string   // ← add
   repo?: string
   problem?: string
   solution?: string
-  tags?: string[] // ← Add this line
+  tags?: string[]
 }
 
 

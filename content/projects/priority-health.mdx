@@ -10,18 +10,36 @@ demo: "https://priorityhealth.onrender.com"
 pic1: "/images/priority-health/landing-page.png"
 pic2: "/images/priority-health/form.png"
 excerpt: "A triage-first healthcare app that prioritizes ER patients using risk scores and digital intake forms."
-tags: ["personal", "featured"]
+tags: ["featured", "personal"]
 ---
 
 ## 👋 Context
 
-Priority Health is a patient-first triage system designed during Island Health’s Code Hack 2023. It aims to reduce emergency room wait times by prioritizing patients based on a medically informed risk score — not just arrival time.
+When we joined Island Health’s Code Hack 2023, our goal was simple: improve the way emergency rooms serve people in pain.
+
+ERs across Canada often run on a **first-come, first-served** basis — which doesn’t always make sense. Imagine someone walking in with a **broken leg**, only to wait behind someone with a **minor scratch** just because they arrived a few minutes later.
+
+**Priority Health** was our response — a smarter, fairer triage system that lets medical staff prioritize patients based on **real risk**, not arrival time.
 
 ---
 
 ## 💡 The Problem
 
-ER wait times across Canada can exceed **8 hours** — particularly in urban areas. Many patients with serious but “invisible” symptoms wait too long because triage isn’t automated or data-driven.
+Emergency rooms in Canada can see **wait times of 8 hours or more**, especially in busy urban hospitals. During that time, patients with serious conditions might go unnoticed while others with less critical needs are seen first.
+
+We realized this wasn’t just a logistics problem — it was a **data problem**. Traditional intake is manual, and triage often happens after patients arrive. There's no intelligent way to estimate risk **before** someone even steps inside the ER.
+
+---
+
+## 💭 The Idea
+
+We built a system that uses a medically-informed scoring model — based on the **Injury Severity Score (ISS)** — to quickly estimate how serious a patient's situation is.
+
+Patients fill out a digital form before arriving at the hospital. From there, a **Patient Metric Score** (from 0 to 10) is automatically generated. Higher scores indicate more urgent cases.
+
+This score can help hospital staff prioritize care more effectively — so those who need help **right now** get it right away.
+
+And we didn’t stop there. In future versions, we want to pull in **past medical history** to better understand how recurring or chronic conditions might impact risk. For example, shortness of breath may be much more serious in a patient with a history of heart disease.
 
 ---
 
@@ -40,8 +58,8 @@ Users land on a welcoming homepage prompting them to register.
 They fill out a comprehensive intake form, providing:
 
 - Personal information
-- Medical history (chronic pain, prescription use, mental health)
-- Drug/alcohol usage
+- Medical history (chronic pain, prescriptions, mental health)
+- Drug/alcohol use
 - ADLs (Activities of Daily Living)
 
 <img src="/images/priority-health/form.png" alt="Form - Personal Info" />
@@ -50,7 +68,7 @@ They fill out a comprehensive intake form, providing:
 
 ### 🔐 Step 3: Admin or Staff Login
 
-Authorized hospital staff can log in through a secure portal to manage patient submissions.
+Authorized hospital staff log in through a secure portal to view and manage incoming patient submissions.
 
 <img src="/images/priority-health/admin.png" alt="Admin Login" />
 
@@ -58,11 +76,21 @@ Authorized hospital staff can log in through a secure portal to manage patient s
 
 ### 📊 Step 4: Risk Score Result
 
-Once submitted, the system generates a **Patient Metric Score** between 0–10 (based on the ISS model) and displays it to the user.
+After submission, the system calculates a **Patient Metric Score** (0–10) based on the user’s input and the ISS model.
 
 <img src="/images/priority-health/result.png" alt="Submission Score" />
 
-This score allows hospital staff to better triage patients **before** they enter the queue physically.
+This score helps staff triage more efficiently, even before the patient physically enters the waiting room.
+
+---
+
+## 📌 Why This Matters
+
+We wanted this project to be more than just a demo. So we rooted it in **real-world medical standards**, like the Injury Severity Score (ISS) and informed it with tools used by hospitals across BC and Canada.
+
+Systems like the **Canadian Triage and Acuity Scale (CTAS)** already exist in emergency care. Our goal was to bring those concepts forward into a more **digital-first**, proactive format — one that could eventually plug into electronic medical records and support **automated pre-triage**.
+
+Imagine a world where hospitals can **predict who needs care first**, long before the patient even walks through the door.
 
 ---
 
@@ -78,15 +106,23 @@ This score allows hospital staff to better triage patients **before** they enter
 
 ## 🧠 Lessons Learned
 
-- UX must balance sensitivity and honesty — some questions are deeply personal
-- Metric scoring logic must be fair, unbiased, and medically backed
-- Deploying a patient-facing system requires transparency and trust
+- User experience must balance **sensitivity** and **clarity** — medical questions can be deeply personal
+- Scoring logic must be **fair**, **transparent**, and **backed by evidence**
+- Building for healthcare means thinking beyond the screen — it’s about **trust** and **impact**
 
 ---
 
 ## 🔍 What’s Next
 
-- FHIR integration for EMR compatibility
-- OAuth login for verified staff
-- Smart queue estimation using historical triage logs
-- Multilingual support and screen reader accessibility
+- FHIR integration to pull in EMR data
+- OAuth login for verified hospital staff
+- Smarter queueing system using historical triage data
+- Multilingual support and accessibility enhancements
+
+---
+
+## 🚑 Final Thoughts
+
+**Priority Health** was more than a hackathon project — it was a real attempt to rethink how we help people during their most vulnerable moments.
+
+By shifting from guesswork to data, and from manual intake to smart triage, we believe digital systems like this can **reduce ER wait times**, **prioritize urgent care**, and **restore fairness** to a process that affects everyone.

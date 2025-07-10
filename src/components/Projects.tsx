@@ -4,11 +4,12 @@ import { getProjects } from "@/lib/getProjects";
 import { cn } from "@/lib/utils";
 
 /* ───────────────────────────────────────────── */
-const FILTERS = ["Featured", "Personal", "Work"] as const;
+const FILTERS = ["All", "Featured", "Personal", "Work"] as const;
 const CARD_WIDTH = 320;
 const CARD_GAP = 24;
 
 const TAG_STYLES: Record<string, string> = {
+  all: "bg-gray-200 text-gray-800",
   featured: "bg-orange-100 text-orange-800",
   personal: "bg-green-100 text-green-800",
   work: "bg-blue-100 text-blue-800",
@@ -27,12 +28,14 @@ export default function Projects() {
   const [scrollIndex, setScrollIndex] = useState(0);
 
   const list = useMemo(() => {
-    const filtered = projects.filter((p) =>
-      p.tags?.includes(filter.toLowerCase())
-    );
-    const unique = Array.from(new Map(filtered.map(p => [p.slug, p])).values());
+    const filtered =
+      filter === "All"
+        ? projects
+        : projects.filter((p) => p.tags?.includes(filter.toLowerCase()));
+    const unique = Array.from(new Map(filtered.map((p) => [p.slug, p])).values());
     return unique;
   }, [projects, filter]);
+
 
 
   useEffect(() => {
