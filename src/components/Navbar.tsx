@@ -65,30 +65,36 @@ const Navbar: React.FC = () => {
           </button>
         </div>
 
-        {/* Mobile hamburger button */}
-        <button
-          onClick={toggleMenu}
-          aria-label={isOpen ? "Close menu" : "Open menu"}
-          className={cn(
-            "md:hidden relative z-50 transition-colors duration-200",
-            isOpen ? "text-zinc-900 dark:text-white" : "text-primary"
-          )}
-        >
-          <span
-            className={cn(
-              "inline-block transition-transform duration-300",
-              isOpen ? "rotate-90" : "rotate-0"
-            )}
+        {/* Mobile theme toggle + hamburger */}
+        <div className="md:hidden flex items-center gap-2 relative z-50">
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-zinc-700 transition flex items-center justify-center"
+            aria-label="Toggle dark mode"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </span>
-        </button>
+            {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
+
+          <button
+            onClick={toggleMenu}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-zinc-700 transition flex items-center justify-center"
+          >
+            {isOpen ? (
+              <X className="w-5 h-5 transition-transform duration-300 rotate-90" />
+            ) : (
+              <Menu className="w-5 h-5 transition-transform duration-300" />
+            )}
+          </button>
+        </div>
+
+
       </div>
 
       {/* Mobile drawer */}
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-white dark:bg-zinc-900 h-screen w-screen",
+          "fixed inset-0 z-40 bg-[hsl(var(--background))] dark:bg-[hsl(var(--background))] h-screen w-screen",
           "overflow-y-auto flex flex-col pt-24 px-6 md:hidden",
           "transition-transform duration-300 ease-in-out",
           isOpen ? "translate-x-0" : "translate-x-full"
@@ -104,15 +110,7 @@ const Navbar: React.FC = () => {
             {name}
           </a>
         ))}
-
-        {/* Toggle inside mobile menu */}
-        <button
-          onClick={toggleTheme}
-          className="mt-6 self-start p-2 rounded-full hover:bg-gray-200 dark:hover:bg-zinc-700 transition"
-          aria-label="Toggle dark mode"
-        >
-          {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
+        
       </div>
     </nav>
   );

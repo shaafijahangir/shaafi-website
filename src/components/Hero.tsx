@@ -20,21 +20,24 @@ const Hero = () => {
             </p>
             
             <div className="flex flex-wrap gap-3 pt-2">
-              <a href="#contact" className="button">
+              <a
+                href="#contact"
+                className="bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] rounded-full py-2 px-5 font-medium shadow-[0_2px_4px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.1)] active:translate-y-[1px] transition-all duration-200 flex items-center"
+              >
                 Get in Touch
                 <ArrowRight className="ml-2 h-4 w-4 inline" />
               </a>
               
               <a 
                 href="#projects" 
-                className="button bg-secondary text-secondary-foreground hover:bg-secondary/80"
+                className="bg-[hsl(var(--alternate))] text-primary rounded-full py-2 px-5 font-medium shadow-[0_2px_4px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.1)] active:translate-y-[1px] transition-all duration-200"
               >
                 View Projects
               </a>
 
               <a
                 href="/resume.pdf"
-                className="button bg-muted text-foreground hover:bg-muted/80"
+                className="bg-[hsl(var(--alternate))] text-primary rounded-full py-2 px-5 font-medium shadow-[0_2px_4px_rgba(0,0,0,0.08)] hover:shadow-[0_4px_8px_rgba(0,0,0,0.1)] active:translate-y-[1px] transition-all duration-200"
                 target="_blank"
                 rel="noopener noreferrer"
               >

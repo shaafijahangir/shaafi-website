@@ -44,7 +44,7 @@ const Contact = () => {
 
 
   return (
-    <section id="contact" className="section-padding bg-background">
+    <section id="contact" className="section-padding bg-alt">
       <div className="max-w-5xl mx-auto">
         <h2 className="section-title">Get In Touch</h2>
         

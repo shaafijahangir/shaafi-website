@@ -3,7 +3,7 @@ import React from 'react';
 
 const Education = () => {
   return (
-    <section id="education" className="section-padding bg-background">
+    <section id="education" className="section-padding section-alt">
       <div className="max-w-5xl mx-auto">
         <h2 className="section-title">Education</h2>
         

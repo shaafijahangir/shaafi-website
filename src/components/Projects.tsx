@@ -9,10 +9,10 @@ const CARD_WIDTH = 320;
 const CARD_GAP = 24;
 
 const TAG_STYLES: Record<string, string> = {
-  all: "bg-gray-200 text-gray-800",
-  featured: "bg-orange-100 text-orange-800",
-  personal: "bg-green-100 text-green-800",
-  work: "bg-blue-100 text-blue-800",
+  all: "bg-white text-zinc-800 hover:bg-zinc-100 border border-black-300",
+  featured: "bg-orange-100 text-orange-800 border border-orange-300",
+  personal: "bg-green-100 text-green-800 border border-green-300",
+  work: "bg-blue-100 text-blue-800 border border-blue-300",
 };
 /* ───────────────────────────────────────────── */
 
@@ -23,7 +23,7 @@ export default function Projects() {
 
   const railRef = useRef<HTMLDivElement>(null);
 
-  const [filter, setFilter] = useState<(typeof FILTERS)[number]>("Featured");
+  const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
   const [cardsVisible, setCardsVisible] = useState(3);
   const [scrollIndex, setScrollIndex] = useState(0);
 
@@ -73,7 +73,7 @@ export default function Projects() {
   const maxScroll = Math.max(0, Math.ceil(list.length - cardsVisible));
 
   return (
-    <section id="projects" className="py-16 bg-[#f7f8fa]">
+    <section id="projects" className="py-16">
       <div className="max-w-5xl mx-auto px-4">
         <h2 className="text-3xl font-bold mb-6">Projects</h2>
 
@@ -114,63 +114,64 @@ export default function Projects() {
             className="flex-1 overflow-x-auto hide-scroll scroll-snap-x pb-5 ml-1"
             style={{ overflowY: "visible" }}
           >
-            <div className="flex gap-6 min-w-max">
+            <div className="flex gap-2 min-w-max">
               {list.map((p) => (
-                <div
-                  key={p.slug}
-                  className="flex-none w-72 sm:w-80 border border-gray-200 bg-white transition hover:border-black scroll-snap-align-start bg-white rounded-2xl  overflow-visible flex flex-col"
-                >
-                  {p.pic1 && (
-                    <>
-                      <div className="rounded-t-2xl overflow-hidden">
-                        <img
-                          src={p.pic1}
-                          alt={p.title}
-                          className="w-full h-40 object-cover bg-gray-100"
-                        />
-                      </div>
-                      {/* Grey separator line */}
-                      <div className="h-px bg-gray-200 w-full" />
-                    </>
-                  )}
-                  <div className="p-6 flex flex-col h-full min-h-[300px]">
-                    <div className="mb-2">
-                      <div className="flex justify-between items-center">
-                        <h3 className="text-lg font-semibold">{p.title}</h3>
-                        <span className="bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full">
-                          {new Date(p.date).toLocaleDateString("en-US", {
-                            month: "short",
-                            year: "numeric"
-                          }).toUpperCase()}
-                        </span>
+                <div key={p.slug} className="pb-4 px-3 sm:px-2">
+                  <div
+                    className="flex-none w-72 sm:w-80 border border-gray-\400 transition hover:border-black rounded-2xl overflow-visible flex flex-col bg-white dark:bg-[#142B42] shadow-[6px_8px_20px_rgba(0,0,0,0.3)] hover:shadow-[8px_10px_25px_rgba(0,0,0,0.3)]"
+                  >
+                    {p.pic1 && (
+                      <>
+                        <div className="rounded-t-2xl overflow-hidden">
+                          <img
+                            src={p.pic1}
+                            alt={p.title}
+                            className="w-full h-40 object-cover bg-gray-100"
+                          />
+                        </div>
+                        {/* Grey separator line */}
+                        <div className="h-px bg-gray-200 w-full" />
+                      </>
+                    )}
+                    <div className="p-6 flex flex-col h-full min-h-[300px]">
+                      <div className="mb-2">
+                        <div className="flex justify-between items-center">
+                          <h3 className="text-lg font-semibold">{p.title}</h3>
+                          <span className="bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full">
+                            {new Date(p.date).toLocaleDateString("en-US", {
+                              month: "short",
+                              year: "numeric"
+                            }).toUpperCase()}
+                          </span>
+                        </div>
+
+                        {/* Tag badges */}
+                        <div className="mt-2 flex flex-wrap gap-2">
+                          {p.tags?.map((tag) => (
+                            <button
+                              key={tag}
+                              onClick={() =>
+                                setFilter(tag.charAt(0).toUpperCase() + tag.slice(1) as typeof FILTERS[number])
+                              }
+                              className={cn(
+                                "px-3 py-1 text-xs font-medium rounded-full transition",
+                                TAG_STYLES[tag] || "bg-gray-200 text-gray-800"
+                              )}
+                            >
+                              {tag}
+                            </button>
+                          ))}
+                        </div>
                       </div>
 
-                      {/* Tag badges */}
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {p.tags?.map((tag) => (
-                          <button
-                            key={tag}
-                            onClick={() =>
-                              setFilter(tag.charAt(0).toUpperCase() + tag.slice(1) as typeof FILTERS[number])
-                            }
-                            className={cn(
-                              "px-3 py-1 text-xs font-medium rounded-full transition",
-                              TAG_STYLES[tag] || "bg-gray-200 text-gray-800"
-                            )}
-                          >
-                            {tag}
-                          </button>
-                        ))}
-                      </div>
+                      <p className="text-gray-500 text-sm mb-3 flex-grow">{p.excerpt}</p>
+                      <Link
+                        to={`/project/${p.slug}`}
+                        className="mt-auto text-sm w-full text-center bg-black text-white py-2 rounded-md hover:bg-gray-800 transition"
+                      >
+                        View Project
+                      </Link>
                     </div>
-
-                    <p className="text-gray-500 text-sm mb-3 flex-grow">{p.excerpt}</p>
-                    <Link
-                      to={`/project/${p.slug}`}
-                      className="mt-auto text-sm w-full text-center bg-black text-white py-2 rounded-md hover:bg-gray-800 transition"
-                    >
-                      View Project
-                    </Link>
                   </div>
                 </div>
               ))}

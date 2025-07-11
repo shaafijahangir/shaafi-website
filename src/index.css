@@ -7,7 +7,8 @@
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
+    --background: 45 100% 97%;           /* #FFFBEB beige*/ 
+    --alternate: 45 72% 90%;             /* #F5EFD9 dark beige*/
     --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
@@ -46,19 +47,13 @@
     --sidebar-border: 0 0% 90%;
     --sidebar-ring: 0 0% 80%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
-  }
-
-  html.dark body {
-    @apply bg-zinc-900 text-white transition-colors duration-300;
+    @apply bg-background text-foreground font-sans transition-colors duration-300;
   }
 
   /* Custom Styles */
@@ -66,13 +61,55 @@
     @apply py-16 px-6 md:px-8 lg:px-16 xl:px-32;
   }
 
+  html.dark {
+    --background: 213 54% 12%;           /* #0B1B2A darker navy */
+    --alternate: 213 42% 18%;            /* #142B42 navy */
+    --foreground: 0 0% 98%;
+
+    --card: 220 50% 8%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 50% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 210 80% 80%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 220 40% 16%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 220 40% 20%;
+    --muted-foreground: 220 10% 70%;
+
+    --accent: 220 40% 16%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 30% 25%;
+    --input: 220 30% 25%;
+    --ring: 220 30% 40%;
+
+    --sidebar-background: 220 50% 6%;
+    --sidebar-foreground: 220 10% 90%;
+    --sidebar-primary: 220 20% 98%;
+    --sidebar-primary-foreground: 220 10% 10%;
+    --sidebar-accent: 220 30% 10%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 220 30% 25%;
+    --sidebar-ring: 220 30% 40%;
+  }
+
   .section-title {
-    @apply text-3xl md:text-4xl font-bold text-primary mb-6 animate-fade-in;
+    @apply text-3xl md:text-4xl font-bold text-primary dark:text-white mb-6 animate-fade-in;
   }
 
   .card {
-    @apply bg-white dark:bg-zinc-800 dark:text-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300;
+    @apply bg-white dark:bg-[#142B42] dark:text-white rounded-xl p-6 transition-shadow duration-300;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); /* custom hard shadow */
   }
+
 
   .button {
     @apply bg-primary text-primary-foreground dark:bg-white dark:text-black rounded-full py-2 px-6 text-sm font-medium 
@@ -92,12 +129,19 @@
     @apply relative mb-8 last:mb-0;
   }
 
+  .tech-badge {
+    @apply px-3 py-1 mb-2 mr-2 text-xs font-medium rounded-full 
+            bg-[#142B42] text-[#F5EFD9] border border-zinc-200;
+  }
+
+  .badge-beige {
+    @apply px-2 py-1 text-xs rounded-full bg-[hsl(var(--alternate))] text-zinc-800 shadow-sm;
+  }
+
   .badge {
     @apply bg-secondary dark:bg-zinc-700 text-secondary-foreground dark:text-white text-xs font-medium py-1 px-3 rounded-full;
   }
-  .tech-badge {
-    @apply bg-secondary dark:bg-zinc-700 text-secondary-foreground dark:text-white text-xs font-medium py-1 px-2 rounded-full mr-2 mb-2;
-  }
+  
   .badge-pill {
     @apply inline-block rounded-full bg-secondary dark:bg-zinc-700 text-secondary-foreground dark:text-white text-[11px] font-medium px-3 py-1 uppercase tracking-wide;
   }
@@ -147,7 +191,6 @@ html {
     @apply card-surface mt-6;
   }
 
-
   /* soft “card” background like home cards */
   .surface-card {
     @apply bg-white dark:bg-zinc-800 dark:text-white rounded-xl shadow-md;
@@ -191,12 +234,7 @@ html {
   /* snap scrolling */
   .scroll-snap-x          { scroll-snap-type: x mandatory; }
   .scroll-snap-align-start { scroll-snap-align: start; }
-
-  .arrow-btn {
-    @apply absolute z-10 bg-white border shadow rounded-full w-10 h-10 flex items-center justify-center transition;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+  
   .arrow-btn:hover:not(.arrow-disabled){ @apply bg-gray-100; }
   .arrow-disabled{ opacity:.4; cursor:not-allowed; }
 
@@ -208,17 +246,7 @@ html {
     transition: opacity .25s ease;
   }
   /* ---------- Pagination dot look & fade ---------- */
-  .page-dot {
-    width: 0.75rem;          /* w-3  */
-    height: 0.75rem;         /* h-3  */
-    border-radius: 9999px;   /* rounded-full */
-    background-color: #d1d5db;
-    opacity: .35;            /* subtle “dim” */
-    transition:
-      background-color 300ms ease-out,
-      opacity          300ms ease-out,
-      transform        300ms ease-out;   /* keeps the scale pop you liked */
-  }
+  
 
   .page-dot{
     width:0.75rem;height:0.75rem;border-radius:9999px;
@@ -327,6 +355,13 @@ html {
     box-shadow:
       0 10px 10px rgba(0, 0, 0, 0.1), 
       0 10px 10px rgba(0, 0, 0, 0.2);
+  }
+  .bg-alt {
+    background-color: hsl(var(--alternate));
+  }
+
+  .section-alt {
+    @apply section-padding bg-alt;
   }
 
 }
