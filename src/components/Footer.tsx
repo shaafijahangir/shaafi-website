@@ -49,7 +49,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-6 pt-6 border-t border-white/10 text-sm text-white/60 text-center">
+        <div className="mt-6 pt-6 border-t border-black/20 dark:border-white/10 text-sm text-center">
           © {currentYear} M Shaafi Jahangir. All rights reserved.
         </div>
       </div>

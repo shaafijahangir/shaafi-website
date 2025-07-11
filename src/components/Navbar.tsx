@@ -35,17 +35,27 @@ const Navbar: React.FC = () => {
     <nav
       className={cn(
         "fixed inset-x-0 top-0 z-30 px-6 md:px-12 transition-all duration-300",
-        scrolled ? "bg-white/90 backdrop-blur-sm py-3 shadow-sm dark:bg-zinc-900/90" : "bg-transparent py-5"
+        scrolled
+          ? "bg-white/90 backdrop-blur-sm py-3 shadow-sm dark:bg-[#0F1F2C]/90"
+          : "bg-transparent py-5"
       )}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <a href="/" aria-label="Home">
-          <img
-            src="/logo.png"
-            alt="M Shaafi Jahangir logo"
-            className="h-8 w-auto sm:h-5"
-          />
-        </a>
+        <a href="/" aria-label="Home" className="relative">
+        {/* Light mode logo */}
+        <img
+          src="/l-logo.png"
+          alt="M Shaafi Jahangir logo light"
+          className="block dark:hidden h-7 w-auto sm:h-4"
+        />
+        
+        {/* Dark mode logo */}
+        <img
+          src="/d-logo.png"
+          alt="M Shaafi Jahangir logo dark"
+          className="hidden dark:block h-7 w-auto sm:h-4"
+        />
+      </a>
 
         {/* Desktop nav + toggle */}
         <div className="hidden md:flex items-center gap-2">

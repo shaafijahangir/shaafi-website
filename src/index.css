@@ -63,7 +63,7 @@
 
   html.dark {
     --background: 213 54% 12%;           /* #0B1B2A darker navy */
-    --alternate: 213 42% 18%;            /* #142B42 navy */
+    --alternate: 204 70% 15%;            /* #122e3d navy */
     --foreground: 0 0% 98%;
 
     --card: 220 50% 8%;
@@ -130,8 +130,9 @@
   }
 
   .tech-badge {
-    @apply px-3 py-1 mb-2 mr-2 text-xs font-medium rounded-full 
-            bg-[#142B42] text-[#F5EFD9] border border-zinc-200;
+    @apply px-3 py-1 mb-2 mr-2 text-xs font-medium rounded-full
+          bg-[#FFFBEB] text-[#0B1B2A] border border-[#F5EFD9]
+          dark:bg-[#0B1B2A] dark:text-[#FFFBEB] dark:border-[#142B42];
   }
 
   .badge-beige {
@@ -312,13 +313,25 @@ html {
   .hide-scroll::-webkit-scrollbar { display: none; } /* Chrome/Safari */
 
   .arrow-btn {
-    @apply absolute z-10 bg-white border shadow rounded-full w-10 h-10 flex items-center justify-center transition opacity-40 hover:opacity-90;
+    @apply absolute z-10 
+          w-10 h-10 
+          flex items-center justify-center 
+          rounded-full border shadow 
+          transition 
+          opacity-50 hover:opacity-100
+
+          /* Light mode styles */
+          bg-white text-black active:bg-gray-200
+
+          /* Dark mode styles */
+          dark:bg-[#122e3d] dark:text-[#FFFBEB] dark:border-[#0B1B2A] dark:active:bg-[#004266];
+
     top: 50%;
     transform: translateY(-50%);
   }
 
   .arrow-btn:hover {
-    @apply bg-gray-100;
+    @apply bg-gray-100 dark:bg-[#004266];
   }
   .project-card {
     @apply bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300;
