@@ -94,7 +94,7 @@ export default {
 				'fade-out': 'fade-out 0.5s ease-out forwards'
 			},
 			fontFamily: {
-				sans: ['Inter', 'sans-serif'],
+				sans: ['Fredoka', 'Inter', 'sans-serif'],
 			},
 		}
 	},

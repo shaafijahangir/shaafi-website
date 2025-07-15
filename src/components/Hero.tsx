@@ -5,14 +5,14 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const Hero = () => {
   return (
-    <section id="about" className="min-h-screen flex items-center section-padding bg-background">
+    <section id="about" className="min-h-screen flex items-center section-padding bg-background font-sans">
       <div className="max-w-7xl w-full mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           <div className="lg:col-span-7 space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="block">Hello, I'm</span>
-              <span className="block text-primary">M Shaafi Jahangir</span>
+              <span className="font-sans block text-[#004266]">M Shaafi Jahangir</span>
             </h1>
             
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">

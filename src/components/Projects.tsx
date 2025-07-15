@@ -18,7 +18,7 @@ const TAG_STYLES: Record<string, string> = {
 
 export default function Projects() {
   const projects = getProjects().sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+    (a, b) => new Date(b.started).getTime() - new Date(a.started).getTime()
   );
 
   const railRef = useRef<HTMLDivElement>(null);
@@ -138,7 +138,7 @@ export default function Projects() {
                         <div className="flex justify-between items-center">
                           <h3 className="text-lg font-semibold">{p.title}</h3>
                           <span className="bg-gray-100 text-gray-700 text-xs font-medium px-3 py-1 rounded-full">
-                            {new Date(p.date).toLocaleDateString("en-US", {
+                            {new Date(p.started).toLocaleDateString("en-US", {
                               month: "short",
                               year: "numeric"
                             }).toUpperCase()}
