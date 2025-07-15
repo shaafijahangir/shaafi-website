@@ -11,7 +11,7 @@ const Hero = () => {
           
           <div className="lg:col-span-7 space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="block">Hello, I'm</span>
+              <span className="block">Hello World, I'm</span>
               <span className="font-sans block text-[#004266]">M Shaafi Jahangir</span>
             </h1>
             
@@ -107,7 +107,14 @@ const Hero = () => {
           
           <div className="lg:col-span-5">
             <div className="relative">
-              <div className="aspect-square rounded-full bg-secondary/50 flex items-center justify-center mx-auto" style={{ maxWidth: '400px' }}>
+              <div
+                className="aspect-square rounded-full flex items-center justify-center mx-auto"
+                style={{
+                  maxWidth: '400px',
+                  boxShadow: '0 10px 25px rgba(0, 0, 0, 0.2)', // soft dark shadow
+                  border: '2px solid #FFFBEB', // optional beige border
+                }}
+              >
                 <Avatar className="w-80 h-80 rounded-full overflow-hidden">
                   <AvatarImage
                     src="/shaafi-face-pic.jpg"
