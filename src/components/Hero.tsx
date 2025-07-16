@@ -70,7 +70,7 @@ const Hero = () => {
                 </svg>
               </a>
 
-              <span className="text-muted-foreground">Victoria, Canada</span>
+              <span className="text-black dark:text-primary">Victoria, Canada</span>
             </div>
           </div>
 

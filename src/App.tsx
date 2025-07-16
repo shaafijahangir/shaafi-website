@@ -36,7 +36,7 @@ const App = () => {
           <img
             src="/mesh-light2.svg"
             alt="mesh light"
-            className="w-full h-full object-cover opacity-60 dark:hidden rotate-270"
+            className="w-full h-full object-cover opacity-90 dark:hidden rotate-270"
           />
 
           {/* Dark mode mesh */}
