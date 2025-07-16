@@ -15,7 +15,7 @@ const Hero = () => {
           <div className="lg:col-span-7 space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="block">Hello World, I'm</span>
-              <span className="font-sans block text-[#004266] dark:text-white">M Shaafi Jahangir</span>
+              <span className="font-sans block dark:text-white">M Shaafi Jahangir</span>
             </h1>
 
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl">

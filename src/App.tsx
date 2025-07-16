@@ -30,7 +30,24 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        {/* 🌌 Background stars */}
+        {/* Mesh Gradient Backgrounds */}
+        <div className="fixed inset-0 -z-20">
+          {/* Light mode mesh */}
+          <img
+            src="/mesh-light2.svg"
+            alt="mesh light"
+            className="w-full h-full object-cover opacity-60 dark:hidden rotate-270"
+          />
+
+          {/* Dark mode mesh */}
+          <img
+            src="/mesh-dark1.svg"
+            alt="mesh dark"
+            className="w-full h-full object-cover opacity-80 hidden dark:block rotate-180"
+          />
+        </div>
+
+        {/* Background stars */}
         <div className="fixed inset-0 -z-10">
           <StarryBackground />
         </div>

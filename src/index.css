@@ -442,7 +442,7 @@ html {
   }
 
   .bg-custom-dark {
-    background-color: rgba(18, 46, 61, 0.3); /* #122e3d with 60% opacity */
+    background-color: rgba(18, 46, 61, 0.4); /* #122e3d with 60% opacity */
   }
   .bg-custom-light {
     background-color: rgba(245, 239, 217, 0.6); /* #FFFBEB with 60% opacity */

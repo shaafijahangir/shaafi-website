@@ -1,0 +1,16 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" id="mesh-gradient" 
+	    width="1000" height="500" viewBox="0 0 1000 500" >
+	        <defs>
+	            <filter id="blur" filterUnits="userSpaceOnUse" x="0" y="0" width="1000" height="500">
+	                <feGaussianBlur stdDeviation="80" />
+	            </filter>
+	            <filter id="noise" x="0" y="0" width="100%" height="100%">
+				<feTurbulence type="fractalNoise" baseFrequency="1" octaves="3" result="turbulence" stitchTiles="stitch" />
+				<feBlend in="SourceGraphic" in2="turbulence" mode="overlay" />
+			</filter>
+	        </defs>
+	        <rect id="background" width="100%" height="100%" fill="#FFFFFF" />
+	        <g id="swatches" width="1000" height="500" filter="url(#blur)"><rect x="214.77591917019834" y="13.565884786553227" width="871.1554456229135" height="727.3947912960914" fill="#FF5500" /><rect x="722.5852334677987" y="214.14717954783058" width="422.168337001153" height="409.8464435262202" fill="#FFEBB4" /><rect x="-55.741548775959245" y="-115.4246354511497" width="757.7346031682821" height="992.777123858463" fill="#FFAB04" /><rect x="200.78651432405113" y="68.1800127825997" width="369.1729673460405" height="461.3958546048676" fill="#FFF0D5" /></g>
+	    	<rect x="0" y="0" width="1000" height="500" 
+	    	style="mix-blend-mode: soft-light; filter: url(#noise); opacity: 100%"></rect>
+    	</svg>
