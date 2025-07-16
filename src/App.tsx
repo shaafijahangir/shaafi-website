@@ -2,32 +2,46 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route, useLocation } from "react-router-dom"; // ✅ UPDATED
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react";
 
-import { AnimatePresence, motion } from "framer-motion"; // ✅ NEW
+import Hero from "@/components/Hero";
+import Experience from "@/components/Experience";
+import Projects from "@/components/Projects";
+import Education from "@/components/Education";
+import Skills from "@/components/Skills";
+import Contact from "@/components/Contact";
 
-import Index from "./pages/Index";
 import ProjectPage from "./pages/ProjectPage";
 import NotFound from "./pages/NotFound";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-
+import StarryBackground from "@/components/ui/StarryBackground";
 import { ThemeProvider } from "@/lib/ThemeProvider";
+import { useFadeInOnScroll } from "@/hooks/useFadeInOnScroll"; 
 
 const queryClient = new QueryClient();
 
 const App = () => {
-  const location = useLocation(); // ✅ NEW
+  const location = useLocation();
+  useFadeInOnScroll();
 
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
+        {/* 🌌 Background stars */}
+        <div className="fixed inset-0 -z-10">
+          <StarryBackground />
+        </div>
+
         <TooltipProvider>
           <Toaster />
           <Sonner />
           <Navbar />
-          <div className="pt-20">
+
+          {/* Main routed content */}
+          <div className="pt-20 relative z-10">
             <AnimatePresence mode="wait">
               <Routes location={location} key={location.pathname}>
                 <Route
@@ -39,7 +53,12 @@ const App = () => {
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.4 }}
                     >
-                      <Index />
+                      <Hero />
+                      <Experience />
+                      <Projects />
+                      <Education />
+                      <Skills />
+                      <Contact />
                     </motion.div>
                   }
                 />
@@ -48,8 +67,11 @@ const App = () => {
               </Routes>
             </AnimatePresence>
           </div>
+
           <Footer />
         </TooltipProvider>
+
+        <Analytics />
       </ThemeProvider>
     </QueryClientProvider>
   );

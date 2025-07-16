@@ -71,7 +71,7 @@ const Experience = () => {
   };
 
   return (
-    <section id="experience" className="section-alt">
+    <section id="experience" className="section-padding dark:bg-custom-dark bg-custom-light">
       <div className="max-w-5xl mx-auto">
         <h2 className="section-title">Experience</h2>
         

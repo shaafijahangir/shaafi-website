@@ -234,7 +234,7 @@ const skills = [
 ];
 
 const Skills = () => (
-  <section id="skills" className="section-padding bg-alt">
+  <section id="skills" className="section-padding">
     <div className="max-w-6xl mx-auto">
       <h2 className="section-title">Skills</h2>
       <div className="overflow-hidden py-10">

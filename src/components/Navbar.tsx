@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
       className={cn(
         "fixed inset-x-0 top-0 z-30 px-6 md:px-12 transition-all duration-300",
         scrolled
-          ? "bg-white/90 backdrop-blur-sm py-3 shadow-sm dark:bg-[#0F1F2C]/90"
+          ? " backdrop-blur-sm py-3 shadow-sm dark:bg-custom-dark"
           : "bg-transparent py-5"
       )}
     >
