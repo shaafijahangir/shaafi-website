@@ -1,0 +1,125 @@
+---
+title: "TikTok Quote Video Automation"
+slug: tiktok-automation
+date: "2024-12-10"
+company: "Personal Project"
+category: ["Automation", "Content Creation", "AI"]
+status: completed
+stack:
+  [
+    "Make.com",
+    "Google Sheets",
+    "JSON2Video",
+    "OpenAI",
+    "YouTube API",
+    "TikTok Business API",
+  ]
+links:
+  demo: ""
+  github: ""
+pic1: "/images/tiktok-automation/spreadsheet.png"
+excerpt: "An end-to-end automation that generates, voices, styles, and posts motivational quote videos to TikTok and YouTube Shorts using JSON2Video and Make.com."
+tags: ["featured", "personal"]
+role: "Workflow Designer & Automation Engineer"
+duration: "3 weeks"
+---
+
+## 👋 Context
+
+Short-form video platforms like TikTok and YouTube Shorts are filled with AI-enhanced content — from motivational quotes to historical facts and lifestyle visuals. I wanted to explore how far I could take automation by designing a system that:
+
+- Pulls content ideas from a spreadsheet
+- Turns them into videos using **JSON2Video**
+- Posts them directly to **TikTok and YouTube Shorts**
+
+This project combined creativity, technical orchestration, and lean tooling to create a **zero-touch video engine**.
+
+---
+
+## 💡 The Problem
+
+Creating and posting content at scale takes time — writing, editing, voiceovers, uploading, and tracking. This workflow quickly becomes unsustainable, especially for solo creators.
+
+On top of that, platforms like JSON2Video use a **credit-based system**:
+
+- **1 image = 1 credit**
+- **1 second of video = 3 credits**
+- You start with **500–600 free credits**, which gives you about **8 minutes** of video generation before needing to pay
+
+This makes efficiency critical when testing ideas at scale.
+
+---
+
+## ⚙️ Implementation / How It Works
+
+### 🧾 Step 1: Content Planning (Google Sheets)
+
+All content ideas — quotes, captions, voice settings — are entered into a spreadsheet. This acts as the **source of truth** and controls which ideas are rendered and posted.
+
+<img src="/images/tiktok-automation/spreadsheet.png" alt="Spreadsheet" />
+
+---
+
+### 🎬 Step 2: JSON2Video Template Creation
+
+Using a vertical 1080×1920 layout, I built a reel template where:
+
+- A **background image** is generated from a prompt
+- The quote is read aloud using AI voice (Brian)
+- A subtitle is **centered for maximum engagement**
+
+<img src="/images/tiktok-automation/json2video.png" alt="Subtitle in center" />
+
+---
+
+### 🤖 Step 3: Make.com Automation & Posting
+
+- **Make.com** watches the sheet and passes new rows to JSON2Video
+- The rendered video is then **auto-posted** to:
+  - **YouTube Shorts** via API
+  - **TikTok Business** via HTTP request
+- The sheet is updated from `To do` → `Done`
+
+<img
+  src="/images/tiktok-automation/make.png"
+  alt="Make.com Router Automation"
+/>
+
+---
+
+**🧑‍💻 My Role:**  
+I architected the full automation — from data structuring to JSON template logic, Make.com flows, and API routing. I also optimized for credit efficiency and made it easy to plug in new content ideas for batch publishing.
+
+---
+
+## 📌 Impact
+
+- Created 30+ short-form videos with no manual editing
+- Built a base pipeline that can scale with new content types (e.g., viral facts, memes)
+- Tested real-time content creation efficiency and ROI of tools like JSON2Video
+
+**Limitations/Insights:**
+
+- Each video consumes valuable credits (3 per second), so optimizing length is key
+- Tools like JSON2Video and Make.com are flexible but require strict JSON formatting
+- Posting to TikTok requires a verified developer account
+
+---
+
+## 💭 Why I Built This
+
+I wanted to prove that **content creation at scale doesn’t need to be overwhelming**. This project is my version of a creator’s production studio — automated, idea-driven, and creatively free.
+
+It also pushed me to think like a product builder: how can I minimize friction, costs, and time while maximizing reach?
+
+---
+
+## 🚀 What’s Next
+
+- 🔄 Switch to **Airtable** for better data management and filtering
+- 🔑 Complete **TikTok Developer** account setup for full API automation
+- 🎞️ Integrate **Opus Clip** to convert YouTube videos into viral highlights — and pipe those directly into JSON2Video
+- 💡 Auto-generate new quotes using **GPT** and pre-schedule them weekly
+- 📊 Build an analytics layer to monitor views, retention, and watch time
+
+---
