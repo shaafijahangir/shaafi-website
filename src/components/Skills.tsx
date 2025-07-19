@@ -239,7 +239,7 @@ const Skills = () => (
       <h2 className="section-title">Skills</h2>
       <div className="overflow-hidden py-10">
         <motion.div
-          className="flex gap-8 w-max"
+          className="flex gap-1 w-max"
           animate={{ x: ["0%", "-50%"] }}
           transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
         >
