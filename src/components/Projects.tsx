@@ -23,7 +23,7 @@ export default function Projects() {
 
   const railRef = useRef<HTMLDivElement>(null);
 
-  const [filter, setFilter] = useState<(typeof FILTERS)[number]>("All");
+  const [filter, setFilter] = useState<(typeof FILTERS)[number]>("Featured");
   const [cardsVisible, setCardsVisible] = useState(3);
   const [scrollIndex, setScrollIndex] = useState(0);
 
@@ -36,7 +36,7 @@ export default function Projects() {
     return unique;
   }, [projects, filter]);
 
-
+  const maxScroll = Math.max(0, Math.ceil(list.length - cardsVisible));
 
   useEffect(() => {
     const updateVisibleCards = () => {
@@ -51,26 +51,39 @@ export default function Projects() {
   }, []);
 
   useEffect(() => {
-    setScrollIndex(0); // reset pagination on filter change
+    setScrollIndex(0);
     if (railRef.current) {
       railRef.current.scrollTo({ left: 0 });
     }
   }, [filter]);
 
-  const scrollBy = (dir: "left" | "right") => {
+  const scrollBy = (dir: "left" | "right", override = false) => {
     if (!railRef.current) return;
     const amount = CARD_WIDTH + CARD_GAP;
+
     railRef.current.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
 
     setScrollIndex((prev) => {
       const max = Math.ceil(list.length - cardsVisible);
       if (dir === "left") return Math.max(prev - 1, 0);
-      if (dir === "right") return Math.min(prev + 1, max);
+      if (dir === "right") {
+        if (prev + 1 > max && override) {
+          railRef.current?.scrollTo({ left: 0, behavior: "smooth" });
+          return 0;
+        }
+        return Math.min(prev + 1, max);
+      }
       return prev;
     });
   };
 
-  const maxScroll = Math.max(0, Math.ceil(list.length - cardsVisible));
+  // Auto-scroll every 6 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      scrollBy("right", true);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [list, cardsVisible]);
 
   return (
     <section id="projects" className="py-16">
@@ -83,7 +96,6 @@ export default function Projects() {
             <button
               key={f}
               onClick={() => setFilter(f)}
-              aria-pressed={filter === f}
               className={cn(
                 "px-4 py-1 rounded-full text-xs font-medium transition cursor-pointer",
                 TAG_STYLES[f.toLowerCase()],
@@ -97,7 +109,6 @@ export default function Projects() {
 
         {/* carousel */}
         <div className="relative flex items-center select-none">
-          {/* ← arrow */}
           <button
             onClick={() => scrollBy("left")}
             aria-label="Previous"
@@ -108,7 +119,6 @@ export default function Projects() {
             </svg>
           </button>
 
-          {/* scrollable track */}
           <div
             ref={railRef}
             className="flex-1 overflow-x-auto hide-scroll scroll-snap-x pb-5 ml-1"
@@ -118,7 +128,7 @@ export default function Projects() {
               {list.map((p) => (
                 <div key={p.slug} className="pb-4 px-3 sm:px-2">
                   <div
-                    className="flex-none w-72 sm:w-80 border border-gray-\400 transition hover:border-black rounded-2xl overflow-visible flex flex-col bg-white dark:bg-[#142B42] shadow-[6px_8px_20px_rgba(0,0,0,0.3)] hover:shadow-[8px_10px_25px_rgba(0,0,0,0.3)]"
+                    className="flex-none w-72 sm:w-80 border border-gray-400 transition hover:border-black rounded-2xl overflow-visible flex flex-col bg-white dark:bg-[#142B42] shadow-[6px_8px_20px_rgba(0,0,0,0.3)] hover:shadow-[8px_10px_25px_rgba(0,0,0,0.3)]"
                   >
                     {p.pic1 && (
                       <>
@@ -129,7 +139,6 @@ export default function Projects() {
                             className="w-full h-40 object-cover bg-gray-100"
                           />
                         </div>
-                        {/* Grey separator line */}
                         <div className="h-px bg-gray-200 w-full" />
                       </>
                     )}
@@ -145,7 +154,6 @@ export default function Projects() {
                           </span>
                         </div>
 
-                        {/* Tag badges */}
                         <div className="mt-2 flex flex-wrap gap-2">
                           {p.tags?.map((tag) => (
                             <button
@@ -178,7 +186,6 @@ export default function Projects() {
             </div>
           </div>
 
-          {/* → arrow */}
           <button
             onClick={() => scrollBy("right")}
             aria-label="Next"
@@ -192,9 +199,9 @@ export default function Projects() {
 
         {/* pagination strip */}
         <div className="flex justify-center items-center mt-6 gap-2">
-          <span className={`w-3 h-3 rounded-full bg-gray-300 transition-opacity duration-300 ${scrollIndex > 0 ? "opacity-50" : "opacity-0"}`} />
-          <span className="w-3 h-3 rounded-full bg-gray-900 transition-transform duration-300 opacity-100 scale-125" />
-          <span className={`w-3 h-3 rounded-full bg-gray-300 transition-opacity duration-300 ${scrollIndex < maxScroll ? "opacity-50" : "opacity-0"}`} />
+          <span className={`w-3 h-3 rounded-full bg-gray-300 ${scrollIndex > 0 ? "opacity-50" : "opacity-0"}`} />
+          <span className="w-3 h-3 rounded-full bg-gray-900 scale-125" />
+          <span className={`w-3 h-3 rounded-full bg-gray-300 ${scrollIndex < maxScroll ? "opacity-50" : "opacity-0"}`} />
         </div>
       </div>
     </section>
